@@ -1,20 +1,15 @@
 CREATE TABLE riddles (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    riddle VARCHAR(255) NOT NULL,
-    answer VARCHAR(100) NOT NULL,
-    hint VARCHAR(255),
-    roomId INT NOT NULL
+    roomId =1
+    roomId=2
 );
 
 -- Let op, dit is een voorbeeld!
 INSERT INTO riddles (riddle, answer, hint, roomId)
 VALUES
-    ('Welke Pokémon is nummer 25 in de Pokédex?', 'Pikachu', 'Het is de mascotte van Pokémon.', 1),
-    ('Wat is het type van Charmander?', 'Vuur', 'Denk aan zijn vlammende staart.', 1),
-    ('Hoe heet de evolutie van Bulbasaur?', 'Ivysaur', 'Het zit tussen Bulbasaur en Venusaur.', 1),
-    ('Wat gebeurt er als Magikarp level 20 bereikt?', 'Gyarados', 'Van nutteloos naar legendarisch!', 2),
-    ('Wat is super effectief tegen een water-type Pokémon?', 'Gras', 'Denk aan elementaire logica: wat groeit in water?', 2),
-    ('Welke legendarische vogel hoort bij het element ijs?', 'Articuno', 'Zijn naam begint met "Arti...".', 2),
-    ('Wat is de naam van de professor in de eerste Pokémon-games?', 'Professor Oak', 'Hij deelt je eerste Pokémon uit.', 3),
-    ('Welke kleur heeft shiny Charizard?', 'Zwart', 'Anders dan zijn originele oranje kleur.', 3),
-    ('Wat gebruik je om een wilde Pokémon te vangen?', 'Pokéball', 'Je gooit het naar een Pokémon.', 3);
+  ('Ik hang aan de muur, ik piep als je me aanraakt, en ik laat zien of je nog leeft. Wat ben ik?', 'Je ziet een lijn die op en neer gaat', 'hartmonitor', 1),
+('Ik ben klein, scherp en iedereen is bang voor mij, maar zonder mij kun je niet genezen. Wat ben ik?', 'Je krijgt me vaak in je arm', 'naald', 1),
+('Ik zie alles, zelfs wat onder je huid zit, maar ik heb geen ogen. Wat ben ik?', 'Je moet stil blijven liggen', 'röntgenapparaat', 1);
+INSERT INTO questions (riddle, hint, answer, roomId) VALUES
+('Ik ben een deur die alleen opengaat als je het juiste patroon kent. Eén fout en het monster hoort je. Wat ben ik?', 'Je drukt op mij met je vingers', 'codepaneel', 2),
+('Ik ben een vloeistof die van kleur verandert als er gevaar is. Wat ben ik?', 'Je vindt me in reageerbuisjes', 'chemische indicator', 2),
+('Ik bewaak het geheim van het monster. Ik ben geen mens, maar ik heb wel een mond die nooit praat. Wat ben ik?', 'Je opent me met een sleutel of code', 'kluis', 2);
