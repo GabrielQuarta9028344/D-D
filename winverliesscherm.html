@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+<?php
+// Simpele logica: haal resultaat uit querystring ?result=win of ?result=lose
+$result = isset($_GET['result']) ? $_GET['result'] : 'lose';
+
+$won = ($result === 'win');
+?>
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <title>Eindscherm – Dead by Daylight stijl</title>
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: Arial, sans-serif;
+            color: #f5f5f5;
+            background: radial-gradient(circle at top, #3b0000 0, #050505 55%, #000 100%);
+        }
+
+        .overlay {
+            position: relative;
+            text-align: center;
+            padding: 40px 60px;
+            border: 2px solid #660000;
+            background: rgba(0, 0, 0, 0.75);
+            box-shadow: 0 0 25px rgba(0, 0, 0, 0.9);
+        }
+
+        .title {
+            font-size: 42px;
+            letter-spacing: 4px;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+
+        .title.win {
+            color: #c71b1b;
+            text-shadow: 0 0 10px #ff0000;
+        }
+
+        .title.lose {
+            color: #888;
+            text-shadow: 0 0 10px #000;
+        }
+
+        .subtitle {
+            font-size: 16px;
+            color: #ccc;
+            margin-bottom: 30px;
+        }
+
+        .blood-scratch {
+            position: absolute;
+            width: 4px;
+            height: 80px;
+            background: linear-gradient(to bottom, #ff3b3b, #5a0000);
+            box-shadow: 0 0 10px rgba(255, 0, 0, 0.7);
+        }
+
+        .blood-scratch:nth-child(1) { left: 10%; top: -20px; transform: rotate(-8deg); }
+        .blood-scratch:nth-child(2) { left: 15%; top: -25px; transform: rotate(-3deg); }
+        .blood-scratch:nth-child(3) { left: 20%; top: -22px; transform: rotate(4deg); }
+
+        .btn {
+            padding: 10px 22px;
+            border: 1px solid #c71b1b;
+            background: transparent;
+            color: #f5f5f5;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            cursor: pointer;
+            font-size: 13px;
+            transition: 0.2s;
+        }
+
+        .btn:hover {
+            background: #c71b1b;
+            box-shadow: 0 0 10px #c71b1b;
+        }
+
+        .status-text {
+            font-size: 14px;
+            color: #999;
+            margin-top: 15px;
+        }
+    </style>
+</head>
+<body>
+<div class="overlay">
+    <!-- Krassen in de bovenrand -->
+    <div class="blood-scratch"></div>
+    <div class="blood-scratch"></div>
+    <div class="blood-scratch"></div>
+
+    <div class="title <?php echo $won ? 'win' : 'lose'; ?>">
+        <?php echo $won ? 'You Escaped' : 'Sacrificed'; ?>
+    </div>
+
+    <div class="subtitle">
+        <?php if ($won): ?>
+            Je team heeft de proef overleefd. De Entiteit is niet tevreden…
+        <?php else: ?>
+            De Entiteit is boos.
+        <?php endif; ?>
+    </div>
+
+    <button class="btn" onclick="window.location.href='index.php';">
+        Terug naar menu
+    </button>
+
+    <div class="status-text">
+        Resultaat: <?php echo $won ? 'Win' : 'Loss'; ?>
+    </div>
+</div>
+
+<script>
+// Kleine extra: flikkerende achtergrondkleur voor een onheilspellend effect
+setInterval(() => {
+    const intensity = Math.random() * 0.15;
+    document.body.style.background =
+        `radial-gradient(circle at top, rgba(80,0,0,${0.4+intensity}) 0, #050505 55%, #000 100%)`;
+}, 400);
+</script>
+</body>
+</html>
+
+
+</body>
+</html>
