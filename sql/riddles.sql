@@ -9,7 +9,7 @@ CREATE TABLE riddles (
 
 INSERT INTO riddles (riddle, hint, answer, roomId)
 VALUES
-  ('Ik hang aan de muur, ik piep als je me aanraakt, en ik laat zien of je nog leeft. Wat ben ik?', 'Je ziet een lijn die op en neer gaat', 'hartmonitor', 1),
+  ('Ik hang aan de muur, ik piep als je me aanraakt, en ik laat zien of je nog leeft. Wat ben ik?', 'hartmonitor', 1),
 ('Ik ben klein, scherp en iedereen is bang voor mij, maar zonder mij kun je niet genezen. Wat ben ik?', 'Je krijgt me vaak in je arm', 'naald', 1),
 ('Ik zie alles, zelfs wat onder je huid zit, maar ik heb geen ogen. Wat ben ik?', 'Je moet stil blijven liggen', 'röntgenapparaat', 1);
 
