@@ -56,3 +56,90 @@ function checkAnswer() {
     feedback.style.color = 'red';
   }
 }
+
+/* Timer  */
+const timerEl = document.getElementById('timer');
+    const statusEl = document.getElementById('statusText');
+    const minutesInput = document.getElementById('minutesInput');
+    const bloodFill = document.getElementById('bloodFill');
+
+    const startBtn = document.getElementById('startBtn');
+    const pauseBtn = document.getElementById('pauseBtn');
+    const resetBtn = document.getElementById('resetBtn');
+
+    let totalSeconds = 5 * 60;
+    let remainingSeconds = totalSeconds;
+    let intervalId = null;
+    let isRunning = false;
+
+    function formatTime(sec) {
+      const m = Math.floor(sec / 60);
+      const s = sec % 60;
+      return (m < 10 ? '0' + m : m) + ':' + (s < 10 ? '0' + s : s);
+    }
+
+    function updateDisplay() {
+      timerEl.textContent = formatTime(remainingSeconds);
+      const ratio = remainingSeconds / totalSeconds;
+      bloodFill.style.transform = 'scaleX(' + ratio + ')';
+
+      if (remainingSeconds <= 10 && remainingSeconds > 0) {
+        statusEl.textContent = 'De Killer is vlakbij... REN!';
+      } else if (remainingSeconds === 0) {
+        statusEl.textContent = 'Je bent geofferd aan de Entiteit.';
+      } else {
+        statusEl.textContent = '';
+      }
+    }
+
+    function startTimer() {
+      if (isRunning) return;
+      if (remainingSeconds <= 0) return;
+
+      isRunning = true;
+      startBtn.disabled = true;
+      pauseBtn.disabled = false;
+
+      intervalId = setInterval(() => {
+        remainingSeconds--;
+        updateDisplay();
+
+        if (remainingSeconds <= 0) {
+          clearInterval(intervalId);
+          isRunning = false;
+          remainingSeconds = 0;
+          updateDisplay();
+          startBtn.disabled = true;
+          pauseBtn.disabled = true;
+        }
+      }, 1000);
+    }
+
+    function pauseTimer() {
+      if (!isRunning) return;
+      clearInterval(intervalId);
+      isRunning = false;
+      startBtn.disabled = false;
+      pauseBtn.disabled = true;
+    }
+
+    function resetTimer() {
+      clearInterval(intervalId);
+      isRunning = false;
+
+      const mins = Math.max(1, Math.min(60, parseInt(minutesInput.value) || 5));
+      totalSeconds = mins * 60;
+      remainingSeconds = totalSeconds;
+
+      startBtn.disabled = false;
+      pauseBtn.disabled = true;
+      updateDisplay();
+    }
+
+    startBtn.addEventListener('click', startTimer);
+    pauseBtn.addEventListener('click', pauseTimer);
+    resetBtn.addEventListener('click', resetTimer);
+
+    // Init
+    updateDisplay();
+/* Timer  */
