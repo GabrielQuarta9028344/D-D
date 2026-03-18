@@ -174,3 +174,149 @@ button {
       transition: transform 0.2s linear;
     }
 /* Timer */
+
+/* Homepage */
+body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #000 url('') center/cover no-repeat;
+            color: #f5f5f5;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            padding: 40px;
+        }
+
+        .wrapper {
+            width: 900px;
+            background: rgba(0,0,0,0.78);
+            padding: 30px 40px;
+            border: 2px solid #8b0000;
+            box-shadow: 0 0 25px #000;
+        }
+
+        h1 {
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: #c71b1b;
+            text-shadow: 0 0 10px #ff0000;
+            margin-bottom: 20px;
+        }
+
+        .section {
+            margin-bottom: 25px;
+        }
+
+        .section-title {
+            font-size: 20px;
+            font-weight: bold;
+            color: #c71b1b;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+        }
+
+        /* HIER staat jouw afbeelding */
+        .image-box {
+            width: 100%;
+            height: 260px;
+            background: url('/D-D/images/Dead-by-Daylight-Lerys-Memorial-Institute.webp') center/cover no-repeat;
+            border: 2px solid #8b0000;
+        }
+
+        .btn {
+            margin-top: 20px;
+            padding: 12px 25px;
+            border: 1px solid #c71b1b;
+            background: transparent;
+            color: #fff;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .btn:hover {
+            background: #c71b1b;
+            box-shadow: 0 0 10px #c71b1b;
+        }
+/* Homepage */
+
+/* winscherm */
+body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: Arial, sans-serif;
+            color: #f5f5f5;
+            background: radial-gradient(circle at top, #3b0000 0, #050505 55%, #000 100%);
+        }
+
+        .overlay {
+            position: relative;
+            text-align: center;
+            padding: 40px 60px;
+            border: 2px solid #660000;
+            background: rgba(0, 0, 0, 0.75);
+            box-shadow: 0 0 25px rgba(0, 0, 0, 0.9);
+        }
+
+        .title {
+            font-size: 42px;
+            letter-spacing: 4px;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+
+        .title.win {
+            color: #c71b1b;
+            text-shadow: 0 0 10px #ff0000;
+        }
+
+        .title.lose {
+            color: #888;
+            text-shadow: 0 0 10px #000;
+        }
+
+        .subtitle {
+            font-size: 16px;
+            color: #ccc;
+            margin-bottom: 30px;
+        }
+
+        .blood-scratch {
+            position: absolute;
+            width: 4px;
+            height: 80px;
+            background: linear-gradient(to bottom, #ff3b3b, #5a0000);
+            box-shadow: 0 0 10px rgba(255, 0, 0, 0.7);
+        }
+
+        .blood-scratch:nth-child(1) { left: 10%; top: -20px; transform: rotate(-8deg); }
+        .blood-scratch:nth-child(2) { left: 15%; top: -25px; transform: rotate(-3deg); }
+        .blood-scratch:nth-child(3) { left: 20%; top: -22px; transform: rotate(4deg); }
+
+        .btn {
+            padding: 10px 22px;
+            border: 1px solid #c71b1b;
+            background: transparent;
+            color: #f5f5f5;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            cursor: pointer;
+            font-size: 13px;
+            transition: 0.2s;
+        }
+
+        .btn:hover {
+            background: #c71b1b;
+            box-shadow: 0 0 10px #c71b1b;
+        }
+
+        .status-text {
+            font-size: 14px;
+            color: #999;
+            margin-top: 15px;
+        }
+/* Winscherm */
