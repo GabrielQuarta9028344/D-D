@@ -21,6 +21,8 @@ try {
 
 <body>
   <h1>Team: ...</h1>
+  <p>Speel Pac-Man en los raadsels op uit kamer 1.</p>
+  <p><a href="../game1.html"><button>Start Pac-Man met raadsels</button></a></p>
 
   <div class="container">
     <?php foreach ($riddles as $index => $riddle) : ?>
