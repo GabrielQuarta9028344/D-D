@@ -143,3 +143,8 @@ const timerEl = document.getElementById('timer');
     // Init
     updateDisplay();
 /* Timer  */
+
+
+/* game2 */
+
+/* game2 */
