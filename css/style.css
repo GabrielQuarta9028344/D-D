@@ -373,3 +373,94 @@ body {
 /* game2 */
 
 /* game2 */
+
+
+
+
+/* game3 */
+body {
+    font-family: Arial, sans-serif;
+    background: #0b1530;
+    color: #fff;
+    margin: 0;
+}
+
+.game-container {
+    max-width: 1000px;
+    margin: 20px auto;
+    padding: 20px;
+    background: #111a3a;
+    border-radius: 10px;
+}
+
+h1 {
+    text-align: center;
+    color: #ffd700;
+}
+
+.subtitle {
+    text-align: center;
+    color: #ccc;
+}
+
+.board-container {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+}
+
+#board {
+    display: grid;
+    grid-template-columns: repeat(10, 45px);
+    grid-template-rows: repeat(10, 45px);
+    gap: 4px;
+}
+
+.tile {
+    width: 45px;
+    height: 45px;
+    background: #34406b;
+    border-radius: 4px;
+    position: relative;
+}
+
+.wall {
+    background: #1a1f33;
+}
+
+.goal {
+    background: purple;
+}
+
+.riddle-spot {
+    background: #d4a017;
+}
+
+.player {
+    outline: 3px solid #00ffcc;
+}
+
+.entity {
+    outline: 3px solid red;
+}
+
+.player-dot, .entity-dot {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    position: absolute;
+    top: 12px;
+    left: 12px;
+}
+
+.player-dot {
+    background: #00ffcc;
+}
+
+.entity-dot {
+    background: red;
+}
+
+.hidden {
+    display: none;
+}
