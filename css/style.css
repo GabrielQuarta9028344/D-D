@@ -2,6 +2,67 @@
     #gameCanvas { border: 2px solid #fff; background: #000; display: block; margin: 10px auto; }
     #scoreboard { color: #fff; font-size: 18px; }
     #controls button { margin: 6px; }
+    
+    .riddles-list { 
+      max-width: 760px; 
+      margin: 30px auto;
+      background: #222;
+      color: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      text-align: left;
+    }
+    
+    .riddles-list h2 {
+      text-align: center;
+      color: #4CAF50;
+      margin-top: 0;
+    }
+    
+    #riddlesContainer {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 15px;
+      max-height: 400px;
+      overflow-y: auto;
+    }
+    
+    .riddle-item {
+      background: #333;
+      padding: 15px;
+      border-left: 4px solid #4CAF50;
+      border-radius: 4px;
+      font-size: 14px;
+    }
+    
+    .riddle-number {
+      color: #4CAF50;
+      font-weight: bold;
+      margin-bottom: 8px;
+    }
+    
+    .riddle-question {
+      margin-bottom: 10px;
+      line-height: 1.4;
+    }
+    
+    .riddle-answer {
+      color: #FFD700;
+      font-size: 13px;
+      margin-bottom: 5px;
+    }
+    
+    .riddle-hint {
+      color: #87CEEB;
+      font-size: 12px;
+      font-style: italic;
+      margin-bottom: 5px;
+    }
+    
+    .riddle-room {
+      color: #FFA500;
+      font-size: 12px;
+    }
 
 
 
