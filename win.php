@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<title>You Escaped</title>
+<style>
+    body { margin: 0; background: #000; color: #0f0; font-family: Arial; text-align: center; }
+    h1 { margin-top: 150px; font-size: 60px; text-shadow: 0 0 20px lime; }
+    p { color: #ccc; }
+    button { padding: 12px 25px; background: #0f0; border: none; cursor: pointer; margin-top: 30px; }
+</style>
+</head>
+<body>
+
+<h1>You Escaped</h1>
+<p>Je hebt de proef overleefd. De Entiteit is niet tevreden…</p>
+
+<button onclick="window.location.href='game.html'">Opnieuw spelen</button>
+
+</body>
+</html>
