@@ -1,20 +1,76 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <title>Entity Escape – Raden editie</title>
+    <link rel="stylesheet" href="./css/style.css">
+    <script defer src="./game-rol-A.js"></script>
+    <!-- <link rel="stylesheet" href="game-rol-A.php"> -->
+</head>
+<body>
 <?php
+require_once('./dbcon.php');
 
-class RiddleProvider {
-    private array $riddles = [
-        ["question" => "Ik ben een apparaat dat je helpt te ontsnappen, maar ik ben ook een valstrik. Wat ben ik?", "answer" => "valdeur"],
-        ["question" => "Ik ben een sleutel die alleen werkt als je de juiste volgorde volgt. Wat ben ik?", "answer" => "schakelaar"],
-        ["question" => "Ik ben een raadsel dat je moet oplossen om te ontsnappen. Wat ben ik?", "answer" => "puzzel"],
-
-    ];
-
-    public function getRiddles(int $count = 3): array {
-        shuffle($this->riddles);
-        return array_slice($this->riddles, 0, $count);
-    }
+try {
+  $stmt = $db_connection->query("SELECT * FROM riddles WHERE roomId = 3");
+  $riddles = $stmt->fetchAll(PDO::FETCH_ASSOC);
+} catch (PDOException $e) {
+  die("Databasefout: " . $e->getMessage());
 }
+?>
 
-header("Content-Type: application/json");
 
-$provider = new RiddleProvider();
-echo json_encode($provider->getRiddles(), JSON_UNESCAPED_UNICODE);
+<div class="game-container">
+    <h1>Entity Escape – Raden editie</h1>
+    <p class="subtitle">Ontsnap aan de Entity, vind 3 raadselplekken en bereik daarna de eindtegel!</p>
+   
+    
+
+    <div class="board-container">
+        <div id="board"></div>
+
+        <div class="info-panel">
+            <div class="status">
+                <p><strong>Positie:</strong> <span id="player-pos">0,0</span></p>
+                <p><strong>Entity:</strong> <span id="entity-pos">6,0</span></p>
+                <p><strong>Raadsels opgelost:</strong> <span id="riddles-solved">0</span> / 3</p>
+            </div>
+
+            <div class="controls">
+                <p><strong>Bewegen:</strong></p>
+                <div class="arrows">
+                    <button data-dir="up">↑</button>
+                    <div>
+                        <button data-dir="left">←</button>
+                        <button data-dir="right">→</button>
+                    </div>
+                    <button data-dir="down">↓</button>
+                </div>
+            </div>
+
+           <div class="riddle-box hidden" id="riddle-box">
+    <h2>Raadsel</h2>
+    <p id="riddle-question"></p>
+    <input type="text" id="riddle-answer" placeholder="Typ je antwoord...">
+    <button id="submit-answer">Beantwoord</button>
+    <p id="riddle-feedback"></p>
+</div>
+
+            <div class="lose-message hidden" id="lose-message">
+                <h2>Game Over</h2>
+                <p>De Entity heeft je gepakt!</p>
+                <button onclick="location.reload()">Opnieuw spelen</button>
+            </div>
+
+            <div class="win-message hidden" id="win-message">
+                <h2>Gefeliciteerd!</h2>
+                <p>Je hebt alle raadsels opgelost en de eindtegel bereikt!</p>
+                <button onclick="location.reload()">Opnieuw spelen</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
