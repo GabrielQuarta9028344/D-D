@@ -1,3 +1,18 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // Deze functie opent de modal en toont de vraag
 function openModal(index) {
   // Zoek het element met de class 'box' en het bijbehorende data-index

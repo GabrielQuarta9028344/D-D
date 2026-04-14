@@ -11,6 +11,7 @@
   <title>D-D Escape Room</title>
   <link rel="stylesheet" href="css/style.css" />
 <script src="js/app.js" defer></script>
+<link rel="icon" type="add_riddle" href="admin/add_riddle.php" />
 </head>
 <body class="pacman-page">
   <div class="game-wrapper">
@@ -24,6 +25,11 @@
       <button onclick="location.href='rooms/room_1.php'">Terug naar kamer 1</button>
     </div>
 
+    <section class="riddles-list" id="riddlesList">
+      <h2>Alle Raadsels</h2>
+      <div id="riddlesContainer"></div>
+    </section>
+
     <section class="overlay" id="overlay" onclick="closeModal()"></section>
     <section class="modal" id="modal">
       <h2>Raadsel</h2>
@@ -33,13 +39,19 @@
       <p id="feedback"></p>
     </section>
   </div>
-
-  <script>
-    const canvas = document.getElementById('gameCanvas');
+<script>
+   const canvas = document.getElementById('gameCanvas');
     const ctx = canvas.getContext('2d');
     const tileSize = 18;
     const cols = 20;
     const rows = 20;
+
+    // Hardcoded riddles
+    const hardcodedRiddles = [
+        { riddle: 'Ik hang aan de muur, ik piep als je me aanraakt', answer: 'hartmonitor', hint: 'en ik laat zien of je nog leeft. Wat ben ik?' },
+        { riddle: 'Ik ben klein, scherp en iedereen is bang voor mij, maar zonder mij kun je niet genezen.', answer: 'naald', hint: 'Je krijgt me vaak in je arm' },
+        { riddle: 'Ik zie alles, zelfs wat onder je huid zit, maar ik heb geen ogen..', answer: 'röntgenapparaat', hint: 'Je moet stil blijven liggen' }
+    ];
 
     let grid, pacman, direction, score, collected, totalPellets;
     let monster; // traag achtervolgende vijand
@@ -51,6 +63,7 @@
     let paused = false;
     let showingRiddles = false;
     let riddleIndex = 0;
+    let solvedRiddles = 0;
 
     function resetGame() {
       grid = Array(rows).fill(null).map(() => Array(cols).fill(1));
@@ -83,9 +96,9 @@
           }
         }
       }
-      // steek hier riddle-markers in de eerste riddle count pellets
-      for (let y = 2; y < rows - 2 && riddleIndex < riddles.length; y += 3) {
-        for (let x = 2; x < cols - 2 && riddleIndex < riddles.length; x += 3) {
+      // steek hier riddle-markers in de eerste 3 pellets (voor de 3 raadsels)
+      for (let y = 2; y < rows - 2 && riddleIndex < 3; y += 3) {
+        for (let x = 2; x < cols - 2 && riddleIndex < 3; x += 3) {
           if (grid[y][x] === 2) {
             grid[y][x] = 3; // speciale pellet
             riddleIndex++;
@@ -95,14 +108,15 @@
       totalPellets = totalPellets;
       document.getElementById('total').innerText = totalPellets;
 
-      pacman = { x: 2, y: 2 };
+      pacman = { x: 2, y: rows - 3 };
       direction = { x: 1, y: 0 };
-      monster = { x: cols - 3, y: rows - 3 };
+      monster = { x: cols - 3, y: 2 };
       pacmanTimer = 0;
       monsterTimer = 0;
       riddleTimer = 0;
       paused = false;
       riddleState = null;
+      solvedRiddles = 0;
       updateScoreboard();
     }
 
@@ -112,15 +126,49 @@
         .then(data => {
           console.log('Riddles geladen:', data);
           riddles = data;
+          // Voeg hardcoded riddles toe
+          riddles = riddles.concat(hardcodedRiddles);
+          console.log('Riddles array length:', riddles.length);
+          displayRiddlesList();
           resetGame();
           requestAnimationFrame(gameLoop);
         })
         .catch(error => {
           console.error('Kan raadsels laden:', error);
-          riddles = [{ riddle: 'No raadsels geladen', answer: 'test' }];
+          riddles = hardcodedRiddles;
           resetGame();
           requestAnimationFrame(gameLoop);
         });
+    }
+
+    function displayRiddlesList() {
+      const container = document.getElementById('riddlesContainer');
+      container.innerHTML = '';
+      
+      riddles.forEach((riddle, index) => {
+        const riddleDiv = document.createElement('div');
+        riddleDiv.className = 'riddle-item';
+        riddleDiv.innerHTML = `
+          <div class="riddle-number">#${index + 1}</div>
+          <div class="riddle-question">${riddle.riddle}</div>
+          <div class="riddle-answer">Antwoord: <strong>${riddle.answer}</strong></div>
+          ${riddle.hint ? `<div class="riddle-hint">Hint: ${riddle.hint}</div>` : ''}
+          ${riddle.roomId ? `<div class="riddle-room">Kamer: ${riddle.roomId}</div>` : ''}
+        `;
+        container.appendChild(riddleDiv);
+      });
+    }
+
+    function triggerRiddle() {
+      const currentRiddle = riddles[Math.floor(Math.random() * riddles.length)];
+      document.getElementById("riddle").innerText = currentRiddle.riddle;
+      document.getElementById("answer").value = "";
+      document.getElementById("feedback").innerText = "";
+      document.getElementById("modal").dataset.answer = currentRiddle.answer;
+      document.getElementById("overlay").style.display = 'block';
+      document.getElementById("modal").style.display = 'block';
+      document.getElementById("answer").focus();
+      paused = true;
     }
 
     function updateScoreboard() {
@@ -162,6 +210,7 @@
       console.log('openModal called, index:', index, 'riddles:', riddles, 'riddles.length:', riddles.length);
       if (!riddles[index]) {
         console.error('Riddle not found at index:', index);
+        alert('Geen raadsel beschikbaar!');
         return;
       }
       riddleState = index;
@@ -193,9 +242,13 @@
       const userAnswer = document.getElementById('answer').value.trim();
       const correctAnswer = document.getElementById('modal').dataset.answer.trim();
       const feedback = document.getElementById('feedback');
+      console.log('Checking answer:', userAnswer, 'vs correct:', correctAnswer);
       if (userAnswer.toLowerCase() === correctAnswer.toLowerCase()) {
         feedback.style.color = 'lightgreen';
         feedback.innerText = 'Correct! De game gaat verder.';
+        solvedRiddles++;
+        console.log('Riddle solved! Total solved:', solvedRiddles);
+        paused = false; // Laat spel doorgaan
         setTimeout(closeModal, 900);
       } else {
         feedback.style.color = 'red';
@@ -220,13 +273,10 @@
               collected++;
               score += (cell === 3 ? 50 : 10);
               console.log('Coin collected, type:', cell, 'collected:', collected, 'cell === 3:', cell === 3);
-              // Als blauwe coin en genoeg coins verzameld: raadsel tonen
-              if (cell === 3 && collected >= 10) {
-                console.log('Blue coin raadsel trigger - showing riddle');
-                paused = true;
-                showingRiddles = true;
-                riddleIndex = Math.floor(Math.random() * riddles.length);
-                openModal(riddleIndex);
+              // Als blauwe coin: raadsel triggeren
+              if (cell === 3) {
+                console.log('Blue coin raadsel trigger - calling triggerRiddle');
+                triggerRiddle();
               }
               updateScoreboard();
             }
@@ -261,9 +311,9 @@
           }
         }
 
-        // Blauwe coins (raadsels) verplaatsen elke 60 frames
+        // Blauwe coins (raadsels) verplaatsen elke 30 frames (sneller)
         riddleTimer++;
-        if (riddleTimer >= 60) {
+        if (riddleTimer >= 30) {
           riddleTimer = 0;
           for (let y = 0; y < rows; y++) {
             for (let x = 0; x < cols; x++) {
@@ -277,10 +327,29 @@
                 const newX = x + randomDir.dx;
                 const newY = y + randomDir.dy;
                 
-                if (newX >= 0 && newX < cols && newY >= 0 && newY < rows && grid[newY][newX] === 2) {
-                  grid[y][x] = 2;
-                  grid[newY][newX] = 3;
+                // Beweeg altijd als de nieuwe positie geldig is (geen muur en binnen grid)
+                if (newX >= 0 && newX < cols && newY >= 0 && newY < rows && grid[newY][newX] !== 1) {
+                  // Als er een pellet staat, wissel ze om
+                  if (grid[newY][newX] === 2) {
+                    grid[y][x] = 2;
+                    grid[newY][newX] = 3;
+                  } else if (grid[newY][newX] === 0) {
+                    // Lege ruimte - beweeg naar daar
+                    grid[y][x] = 0;
+                    grid[newY][newX] = 3;
+                  }
                 }
+              }
+            }
+          }
+        }
+
+        // Als alle raadsels zijn opgelost, verander blauwe pellets in normale pellets
+        if (solvedRiddles >= riddles.length) {
+          for (let y = 0; y < rows; y++) {
+            for (let x = 0; x < cols; x++) {
+              if (grid[y][x] === 3) {
+                grid[y][x] = 2;
               }
             }
           }
@@ -313,6 +382,7 @@
     });
 
     loadRiddles();
-  </script>
+
+</script>
 </body>
 </html>

@@ -1,20 +1,26 @@
-
- <?php
-header('Content-Type: application/json; charset=utf-8');
-
+<?php
+// Retour raadsels als JSON
 $riddles = [
     [
         'riddle' => 'Ik hang aan de muur, ik piep als je me aanraakt, en ik laat zien of je nog leeft. Wat ben ik?',
-        'answer' => 'hartmonitor'
+        'answer' => 'hartmonitor',
+        'hint' => 'hartmonitor',
+        'roomId' => 1
     ],
     [
         'riddle' => 'Ik ben klein, scherp en iedereen is bang voor mij, maar zonder mij kun je niet genezen. Wat ben ik?',
-        'answer' => 'naald'
+        'answer' => 'naald',
+        'hint' => 'Je krijgt me vaak in je arm',
+        'roomId' => 1
     ],
     [
         'riddle' => 'Ik zie alles, zelfs wat onder je huid zit, maar ik heb geen ogen. Wat ben ik?',
-        'answer' => 'röntgenapparaat'
+        'answer' => 'röntgenapparaat',
+        'hint' => 'Je moet stil blijven liggen',
+        'roomId' => 1
     ]
 ];
 
-echo json_encode($riddles, JSON_UNESCAPED_UNICODE);
+header('Content-Type: application/json');
+echo json_encode($riddles);
+?>
