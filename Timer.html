@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <title>Dead by Daylight Escape Timer</title>
+  <link rel="stylesheet" href="/D-D/css/style.css">
+  <script src="/D-D/js/app.js" defer></script>
+</head>
+<body>
+  <div class="container">
+    <h1>Escape Timer</h1>
+    <div class="subtitle">Overleef voordat de Killer je vindt...</div>
+
+    <div class="timer" id="timer">05:00</div>
+
+    <div class="input-row">
+      Starttijd (minuten):
+      <input type="number" id="minutesInput" value="5" min="1" max="60">
+    </div>
+
+    <div class="controls">
+      <button id="startBtn">Start</button>
+      <button id="pauseBtn" disabled>Pauze</button>
+      <button id="resetBtn">Reset</button>
+    </div>
+
+    <div class="blood-bar">
+      <div class="blood-fill" id="bloodFill"></div>
+    </div>
+
+    <div class="status" id="statusText"></div>
+  </div>
+
+</body>
+</html>
