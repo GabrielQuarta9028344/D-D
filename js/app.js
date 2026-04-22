@@ -510,6 +510,3 @@ const timerEl = document.getElementById('timer');
 /* Timer  */
 
 
-/* game2 */
-
-/* game2 */

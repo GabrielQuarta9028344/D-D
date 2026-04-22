@@ -266,6 +266,8 @@
 
             } else if (head.x === totem.x && head.y === totem.y) {
                 totem = randomPosition();
+                currentRiddle = riddles[Math.floor(Math.random() * riddles.length)];
+
                 triggerRiddle();
             } else {
                 snake.pop();
@@ -316,9 +318,18 @@
             }
 
             if (result === "win") {
-                setTimeout(() => window.location.href = "win.php", 1000); // Redirect to win page after 1 second
+                setTimeout(() => {
+                    window.location.href = "win.php";
+                }, 1000);
             } else {
-                setTimeout(() => window.location.href = "lose.php", 1000); // Redirect to lose page after 1 second
+                setTimeout(() => {
+                    const restart = confirm("Je hebt verloren! Wil je opnieuw spelen?");
+                    if (restart) {
+                        restartGame();
+                    } else {
+                        window.location.href = "lose.php";
+                    }
+                }, 1000);
             }
         }
 
