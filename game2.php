@@ -4,74 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <title>Dead by Daylight Snake</title>
-    <style>
-        body {
-            background: #000;
-            color: #eee;
-            font-family: Arial;
-            text-align: center;
-        }
-
-        h1 {
-            margin-top: 20px;
-            color: #c00;
-            text-shadow: 0 0 10px red;
-        }
-
-        canvas {
-            background: #111;
-            border: 3px solid #c00;
-            margin-top: 20px;
-            box-shadow: 0 0 20px red;
-        }
-
-        #riddleBox {
-            background: #222;
-            padding: 20px;
-            width: 320px;
-            margin: 20px auto;
-            border: 2px solid #c00;
-            box-shadow: 0 0 10px red;
-        }
-
-        .hidden {
-            display: none;
-        }
-
-        input {
-            width: 90%;
-            padding: 8px;
-            margin-top: 10px;
-            background: #000;
-            border: 1px solid #555;
-            color: #eee;
-        }
-
-        button {
-            margin-top: 10px;
-            padding: 8px 16px;
-            background: #c00;
-            border: none;
-            cursor: pointer;
-            color: white;
-        }
-
-        button:hover {
-            background: #f33;
-        }
-
-        #terrorRadius {
-            width: 400px;
-            height: 20px;
-            margin: 10px auto;
-            background: linear-gradient(to right, transparent, red, transparent);
-            opacity: 0;
-            transition: opacity 0.3s;
-        }
-    </style>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 
-<body>
+<body class="game2-page">
 
     <h1>Dead by Daylight: Escape the Killer</h1>
     <p>Besturing: pijltjestoetsen — Restart: R</p>
