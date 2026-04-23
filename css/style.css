@@ -1,3 +1,53 @@
+  body.rebody {
+            background: #0c0e1a;
+            color: #fff;
+            font-family: Arial;
+            padding: 30px;
+        }
+        h1, h2 {
+            color: #f4c400;
+        }
+        form, table {
+            margin-bottom: 40px;
+        }
+        input, select, button {
+            width: 100%;
+            padding: 10px;
+            margin: 6px 0;
+            box-sizing: border-box;
+        }
+        input, select {
+            background: #1a1d2e;
+            color: #fff;
+            border: 1px solid #444;
+        }
+        button {
+            background: #f4c400;
+            border: none;
+            font-weight: bold;
+            cursor: pointer;
+            color: #000;
+        }
+        button:hover {
+            background: #e6b300;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #444;
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background: #f4c400;
+            color: #000;
+        }
+ 
+ 
+ 
+ 
  .game-wrapper { max-width: 760px; margin: 0 auto; text-align: center; }
     #gameCanvas { border: 2px solid #fff; background: #000; display: block; margin: 10px auto; }
     #scoreboard { color: #fff; font-size: 18px; }
