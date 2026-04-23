@@ -1,38 +1,40 @@
-
-
-
-
-
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>D-D Escape Room</title>
-  <link rel="stylesheet" href="css/style.css" />
-<script src="js/app.js" defer></script>
-</head>
-<body class="pacman-page">
-  <div class="game-wrapper">
-    <h1>D-D escape room</h1>
-    <p>Verzamel alle pellets. bij elke speciale pellet verschijnt een raadsel uit kamer 1.</p>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>D-D Escape Room</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <script src="js/app.js" defer></script>
+  </head>
+  <body class="pacman-page">
+    <div class="game-wrapper">
+      <h1>D-D escape room</h1>
+      <p>
+        Verzamel alle pellets. bij elke speciale pellet verschijnt een raadsel
+        uit kamer 1.
+      </p>
 
-    <canvas id="gameCanvas" width="360" height="360"></canvas>
-    <div id="scoreboard">Score: <span id="score">0</span> | Verzameld: <span id="collected">0</span>/<span id="total">0</span></div>
-    <div id="controls">
-      <button id="newGame">Nieuw spel</button>
-      <button onclick="location.href='rooms/room_1.php'">Terug naar kamer 1</button>
-      <button id="nextRoomBtn" style="display: none; background: #4CAF50; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer;">Ga naar Room 2</button>
+      <canvas id="gameCanvas" width="360" height="360"></canvas>
+      <div id="scoreboard">
+        Score: <span id="score">0</span> | Verzameld:
+        <span id="collected">0</span>/<span id="total">0</span>
+      </div>
+      <div id="controls">
+        <button id="newGame">Nieuw spel</button>
+        <button onclick="location.href = 'rooms/room_1.php'">
+          Terug naar kamer 1
+        </button>
+      </div>
+
+      <section class="overlay" id="overlay" onclick="closeModal()"></section>
+      <section class="modal" id="modal">
+        <h2>Raadsel</h2>
+        <p id="riddle"></p>
+        <input type="text" id="answer" placeholder="Typ je antwoord" />
+        <button id="submitAnswer">Controleer antwoord</button>
+        <p id="feedback"></p>
+      </section>
     </div>
-
-    <section class="overlay" id="overlay" onclick="closeModal()"></section>
-    <section class="modal" id="modal">
-      <h2>Raadsel</h2>
-      <p id="riddle"></p>
-      <input type="text" id="answer" placeholder="Typ je antwoord"/>
-      <button id="submitAnswer">Controleer antwoord</button>
-      <p id="feedback"></p>
-    </section>
-  </div>
-</body>
+  </body>
 </html>
