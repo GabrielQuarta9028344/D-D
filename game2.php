@@ -157,6 +157,7 @@
         let currentRiddle = null;
         let timeLeft = 60;
         let timerId = null;
+        let solvedRiddles = 0;
 
         // Initialize riddleActive to false at the start of the script
         let riddleActive = false;
@@ -199,6 +200,7 @@
             food = randomPosition();
             totem = randomPosition();
             score = 0;
+            solvedRiddles = 0;
             gameOver = false;
             riddleActive = false;
             killer = {
@@ -353,8 +355,15 @@
         function checkAnswer() {
             const input = document.getElementById("answerInput").value.trim().toLowerCase();
             if (input === currentRiddle.answer.toLowerCase()) {
+                solvedRiddles++;
                 riddleActive = false;
                 document.getElementById("riddleBox").classList.add("hidden");
+                // Check if all riddles are solved
+                if (solvedRiddles >= riddles.length) {
+                    setTimeout(() => {
+                        window.location.href = 'Game-Rol-A.php';
+                    }, 2000); // Redirect after 2 seconds
+                }
             } else {
                 document.getElementById("hintText").innerText = "Hint: " + currentRiddle.hint;
                 killerSpeed = Math.max(3, killerSpeed - 1); // Reduce killer speed as a penalty

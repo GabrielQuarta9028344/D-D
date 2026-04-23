@@ -1,24 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Escape Room</title>
-  <link rel="stylesheet" href="./css/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+          <link rel="stylesheet" href="css/style.css">
+    <script src="/D-D/js/app.js" defer></script>
 </head>
-
 <body>
+<div class="wrapper">
 
-  <h1>Welkom</h1>
-  <p>De button hieronder is alleen voor testdoeleinden bij het opstarten van het project. Deze pagina is bedoeld voor de
-    uitleg van jullie escape room.</p>
-  <p>Via deze pagina gaat een team naar de aanmeldpagina</p>
+    <h1>Lery's Memorial Institute</h1>
 
+    <div class="section">
+        <div class="section-title">Locatie van de game</div>
+        <p>Het verlaten en vervloekte ziekenhuis: <strong>Lery's Memorial Institute</strong>.  
+        De gangen zijn donker, verlaten en gevuld met echo’s van wat hier ooit gebeurde.</p>
+    </div>
 
-  <button><a href="./rooms/room_1.php">Klik hier voor een demonstratie van kamer
-      1</a></button>
+    <div class="section">
+        <div class="section-title">Doel van de speler</div>
+        <p>Overleef de proef door puzzels op te lossen, generatoren te activeren en de uitgang te vinden voordat de Entiteit je claimt.</p>
+    </div>
+
+    <div class="section">
+        <div class="section-title">Informatie</div>
+        <p>Jij en je team worden opgesloten in een reeks kamers die elk een deel van het verhaal onthullen.  
+        Elke kamer bevat raadsels, verborgen aanwijzingen en gevaarlijke verrassingen.  
+        Werk samen, blijf stil, en vertrouw niemand volledig.</p>
+    </div>
+
+    <div class="section">
+        <div class="section-title">Afbeelding locatie</div>
+        <div class="image-box"></div>
+    </div>
+
+    <div class="section">
+        <div class="section-title">Waarom moet de speler dit doen?</div>
+        <p>De Entiteit voedt zich met angst.  
+        Alleen door te ontsnappen verbreek je de cyclus en voorkom je dat je ziel wordt geofferd.</p>
+    </div>
+
+    <button class="btn" onclick="window.location.href='game1.html'">Start de Proef</button>
+
+</div>
 
 </body>
+</html>
 
+</body>
 </html>
